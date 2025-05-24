@@ -16,28 +16,47 @@ const projects = [
     live: 'https://expensetrack.live',
     github: 'https://github.com/yourname/expense-tracker',
   },
+  {
+    title: 'QuickTalk Chat App',
+    description: 'A real-time chat application with Firebase Auth and Firestore.',
+    tech: ['React', 'Firebase', 'Tailwind CSS'],
+    live: 'https://quicktalk.app',
+    github: 'https://github.com/yourname/quicktalk',
+  },
+  {
+    title: 'QuickTalk Chat App',
+    description: 'A real-time chat application with Firebase Auth and Firestore.',
+    tech: ['React', 'Firebase', 'Tailwind CSS'],
+    live: 'https://quicktalk.app',
+    github: 'https://github.com/yourname/quicktalk',
+  }
+
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="max-w-5xl mx-auto px-4 py-12 mt-14">
-      <h2 className="text-6xl font-bold text-[#4EC3FF] mb-12 text-center">Projects</h2>
-      <div className="grid gap-8 sm:grid-cols-2 m-8">
+    <section
+      id="projects"
+      className="max-w-6xl mx-auto px-4 py-12 min-h-screen w-full mb-16 scroll-mt-20"
+    >
+      <h2 className="text-6xl font-bold text-[#4EC3FF] mb-16 text-center">PROJECTS</h2>
+
+      <div className="grid gap-10 sm:grid-cols-2 m-4 py-12">
         {projects.map(({ title, description, tech, live, github }, index) => (
           <div
             key={index}
-            className="group bg-[#121212] rounded-lg p-6 shadow-md border border-[#2c2c2c] hover:border-[#4EC3FF] hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out"
+            className="group bg-[#121212] rounded-2xl p-6 m-8 shadow-md border border-[#2c2c2c] hover:border-[#4EC3FF] hover:shadow-lg transform hover:scale-[1.03] transition duration-300 ease-in-out"
           >
             {/* Project Title */}
-            <h3 className="text-xl font-semibold text-white group-hover:text-[#4EC3FF] mb-8">
+            <h3 className="text-2xl font-semibold text-white group-hover:text-[#4EC3FF] mb-4">
               {title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-300 text-sm mb-4">{description}</p>
+            <p className="text-gray-300 text-sm mb-5">{description}</p>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-6">
               {tech.map((t, i) => (
                 <span
                   key={i}
@@ -49,7 +68,7 @@ const Projects = () => {
             </div>
 
             {/* Links */}
-            <div className="flex gap-4">
+            <div className="flex gap-6">
               <a
                 href={live}
                 target="_blank"

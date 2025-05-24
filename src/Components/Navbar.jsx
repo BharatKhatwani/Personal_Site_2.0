@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Navigate to homepage and scroll to section
+  // Scroll or Navigate to Section
   const goToSection = (sectionId) => {
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollTo: sectionId } });
@@ -20,8 +20,9 @@ const Navbar = () => {
     }
   };
 
+  // Observe visible sections
   useEffect(() => {
-    const sections = ['home', 'skills', 'projects', 'contact'];
+    const sections = ['home', 'skills', 'projects'];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,16 +42,15 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll to section if navigated with state
+  // Scroll to section when navigated with state
   useEffect(() => {
     if (location.pathname === '/' && location.state?.scrollTo) {
       const section = document.getElementById(location.state.scrollTo);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
     }
   }, [location]);
 
+  // Styling helpers
   const linkClasses = (section) =>
     `group-hover:text-[#4EC3FF] transition duration-300 ${
       activeSection === section && location.pathname === '/' ? 'text-[#4EC3FF]' : ''
@@ -63,37 +63,81 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full px-8 py-4 z-10 bg-[#121212] flex items-center justify-between md:justify-around">
-      <div className="text-[#4EC3FF] font-bold text-2xl sm:text-3xl">B.K</div>
+      
+      {/* Logo */}
+      <div className="text-[#4EC3FF] font-bold text-2xl sm:text-3xl">
+        <Link to="/">B.K</Link>
+      </div>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-8 text-white text-lg font-medium">
+        {/* Home */}
         <li className="relative group cursor-pointer" onClick={() => goToSection('home')}>
           <span className={linkClasses('home')}>Home</span>
-          <span className={underline('home')}></span>
+          <span className={underline('home')} />
         </li>
+
+        {/* About (Route) */}
         <li className="relative group">
-          <Link to="/about" className={`group-hover:text-[#4EC3FF] transition duration-300 ${location.pathname === '/about' ? 'text-[#4EC3FF]' : ''}`}>
+          <Link
+            to="/about"
+            className={`group-hover:text-[#4EC3FF] transition duration-300 ${
+              location.pathname === '/about' ? 'text-[#4EC3FF]' : ''
+            }`}
+          >
             About
           </Link>
-          <span className={`absolute left-0 bottom-0 h-[2px] bg-[#4c9aff] transition-all duration-300 ${location.pathname === '/about' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+          <span
+            className={`absolute left-0 bottom-0 h-[2px] bg-[#4c9aff] transition-all duration-300 ${
+              location.pathname === '/about' ? 'w-full' : 'w-0 group-hover:w-full'
+            }`}
+          />
         </li>
+
+        {/* Skills */}
         <li className="relative group cursor-pointer" onClick={() => goToSection('skills')}>
           <span className={linkClasses('skills')}>Skills</span>
-          <span className={underline('skills')}></span>
+          <span className={underline('skills')} />
         </li>
+
+        {/* Projects */}
         <li className="relative group cursor-pointer" onClick={() => goToSection('projects')}>
           <span className={linkClasses('projects')}>Projects</span>
-          <span className={underline('projects')}></span>
+          <span className={underline('projects')} />
         </li>
+
+        {/* Experience (Route) */}
         <li className="relative group">
-          <Link to="/experience" className={`group-hover:text-[#4EC3FF] transition duration-300 ${location.pathname === '/experience' ? 'text-[#4EC3FF]' : ''}`}>
+          <Link
+            to="/experience"
+            className={`group-hover:text-[#4EC3FF] transition duration-300 ${
+              location.pathname === '/experience' ? 'text-[#4EC3FF]' : ''
+            }`}
+          >
             Experience
           </Link>
-          <span className={`absolute left-0 bottom-0 h-[2px] bg-[#4c9aff] transition-all duration-300 ${location.pathname === '/experience' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+          <span
+            className={`absolute left-0 bottom-0 h-[2px] bg-[#4c9aff] transition-all duration-300 ${
+              location.pathname === '/experience' ? 'w-full' : 'w-0 group-hover:w-full'
+            }`}
+          />
         </li>
-        <li className="relative group cursor-pointer" onClick={() => goToSection('contact')}>
-          <span className={linkClasses('contact')}>Contact</span>
-          <span className={underline('contact')}></span>
+
+        {/* Contact (Route) */}
+        <li className="relative group">
+          <Link
+            to="/contact"
+            className={`group-hover:text-[#4EC3FF] transition duration-300 ${
+              location.pathname === '/contact' ? 'text-[#4EC3FF]' : ''
+            }`}
+          >
+            Contact
+          </Link>
+          <span
+            className={`absolute left-0 bottom-0 h-[2px] bg-[#4c9aff] transition-all duration-300 ${
+              location.pathname === '/contact' ? 'w-full' : 'w-0 group-hover:w-full'
+            }`}
+          />
         </li>
       </ul>
 
@@ -110,7 +154,7 @@ const Navbar = () => {
           <span onClick={() => { setMenuOpen(false); goToSection('skills'); }} className="text-white text-lg hover:text-[#4EC3FF] cursor-pointer">Skills</span>
           <span onClick={() => { setMenuOpen(false); goToSection('projects'); }} className="text-white text-lg hover:text-[#4EC3FF] cursor-pointer">Projects</span>
           <Link to="/experience" onClick={() => setMenuOpen(false)} className="text-white text-lg hover:text-[#4EC3FF]">Experience</Link>
-          <span onClick={() => { setMenuOpen(false); goToSection('contact'); }} className="text-white text-lg hover:text-[#4EC3FF] cursor-pointer">Contact</span>
+          <Link to="/contact" onClick={() => setMenuOpen(false)} className="text-white text-lg hover:text-[#4EC3FF]">Contact</Link>
         </div>
       )}
     </div>

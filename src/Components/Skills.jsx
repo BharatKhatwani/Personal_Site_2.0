@@ -20,16 +20,22 @@ const skills = [
   { name: 'Tailwind CSS', icon: <SiTailwindcss size={40} color="#06B6D4" /> },
   { name: 'Next.js', icon: <SiNextdotjs size={40} color="#000000" /> },
   { name: 'Git', icon: <FaGitAlt size={40} color="#F05032" /> },
-  { name: 'Java', icon: <FaJava size={40} color="#007396" /> }, // Corrected line
+  { name: 'Java', icon: <FaJava size={40} color="#007396" /> },
   { name: 'Redux', icon: <SiRedux size={40} color="#764ABC" /> },
   { name: 'HTML5', icon: <FaHtml5 size={40} color="#E34F26" /> },
+  { name: 'Docker', icon: <FaDocker size={40} color="#0db7ed" /> },
 ];
 
 const Skills = () => {
   return (
-   <section id="skills" className="max-w-5xl mx-auto px-4 py-12">
-      <h2 className="text-6xl font-bold text-[#4EC3FF] mb-8 text-center">Technologies</h2>
-      <div className="flex flex-wrap justify-center gap-6">
+    <section
+      id="skills"
+      className="max-w-4xl mx-auto px-4 py-32 min-h-screen w-full mb-16"
+    >
+      <h2 className="text-6xl font-bold text-[#4EC3FF] mb-16 text-center">
+        Technologies
+      </h2>
+      <div className="flex flex-wrap justify-center gap-8">
         {skills.map(({ name, icon }) => (
           <div
             key={name}
@@ -42,7 +48,6 @@ const Skills = () => {
         ))}
       </div>
     </section>
-    
   );
 };
 

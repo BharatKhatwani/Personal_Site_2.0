@@ -5,9 +5,10 @@ import { SlCalender } from "react-icons/sl";
 const Experience = () => {
   return (
   <section
-  id="experience"
-  className="max-w-4xl mx-auto  px-6 py-12 bg-black text-gray-200 rounded-xl shadow mt-32"
+  
+  className="max-w-4xl mx-auto px-6 py-12 border border-gray-700 text-gray-200 rounded-xl shadow mt-32"
 >
+
   <h2 className="text-center text-3xl font-semibold mb-4 text-[#4EC3FF]">College Event Website</h2>
   <hr className="border-gray-700 mb-6" />
 

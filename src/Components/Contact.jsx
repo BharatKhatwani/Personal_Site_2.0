@@ -1,64 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { MdEmail } from "react-icons/md";
+import { FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    window.location.href = `mailto:your.email@example.com?subject=Contact from ${formData.name}&body=${formData.message}%0A%0AFrom: ${formData.email}`;
-  };
-
   return (
-    <section id="contact" className="max-w-3xl mx-auto px-4 py-12">
-      <h2 className="text-3xl font-bold text-[#4EC3FF] mb-6 text-center">Contact</h2>
-      <p className="text-gray-300 text-center mb-10">
-        Interested in working together or have a question? Let's talk!
-      </p>
+    <div className="min-h-screen flex items-center justify-center  text-white px-6 py-12  ">
+      <div className="w-full max-w-3xl rounded-2xl shadow-xl p-10 space-y-6 border border-gray-700 ">
+        <h1 className="text-4xl font-bold text-center text-[#4EC3FF] mb-12">Get in touch with Me</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-[#121212] p-8 rounded-lg shadow-md space-y-6"
-      >
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          required
-          className="w-full p-3 rounded bg-[#1f1f1f] text-white outline-none focus:ring-2 focus:ring-[#4EC3FF]"
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          required
-          className="w-full p-3 rounded bg-[#1f1f1f] text-white outline-none focus:ring-2 focus:ring-[#4EC3FF]"
-          onChange={handleChange}
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="5"
-          required
-          className="w-full p-3 rounded bg-[#1f1f1f] text-white outline-none focus:ring-2 focus:ring-[#4EC3FF]"
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          className="w-full bg-[#4EC3FF] text-black font-semibold py-3 rounded hover:bg-[#38a8e0] transition"
-        >
-          Send Message
-        </button>
-      </form>
-    </section>
+        <div className="flex items-start gap-4">
+          <MdEmail className="text-2xl text-white mt-1" />
+          <p>
+            <strong className="text-white">Email:</strong>{' '}
+            <span className="text-blue-300">
+              
+              bharatkhatwani796@gmail.com</span>
+          </p>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <FaTwitter className="text-2xl text-white mt-1" />
+          <p>
+            <strong className="text-white">DM on Twitter:</strong>{' '}
+            <a
+              href="https://twitter.com/bharat_khatwani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline text-blue-300"
+            >
+              @bharat_khatwani
+            </a>
+          </p>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <FaLinkedin className="text-2xl text-white mt-1" />
+          <p>
+            <strong className="text-white">DM on LinkedIn:</strong>{' '}
+            <a
+              href="https://www.linkedin.com/in/bharatkhatwani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline text-blue-300"
+            >
+              linkedin.com/in/bharatkhatwani
+            </a>
+          </p>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <FaLocationDot className="text-2xl text-white mt-1" />
+          <p>
+            <strong className="text-white">Address:</strong>{' '}
+            <span className="text-blue-300">Indore, Madhya Pradesh, India</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -3,8 +3,8 @@ import React from 'react';
 const About = () => {
   return (
     <section
-      id="about"
-      className="max-w-3xl mx-auto mt-48 px-6 py-12 bg-black text-center text-gray-200 rounded-xl shadow-md"
+      
+      className="max-w-3xl mx-auto mt-48 px-6 py-12 border border-gray-700 hover:  text-center text-gray-200 rounded-xl shadow-md"
     >
       <p className="text-base md:text-lg leading-relaxed tracking-wide">
         I'm <span className='text-[#4EC3FF] font-bold'> Bharat Khatwani</span>, a 21-year-old Computer Science and Engineering student from Indore, India, currently in my third year.
