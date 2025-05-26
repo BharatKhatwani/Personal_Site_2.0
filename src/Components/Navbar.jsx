@@ -10,19 +10,27 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Scroll or Navigate to Section
+  const scrollToSectionWithOffset = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const yOffset = -80;
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
   const goToSection = (sectionId) => {
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollTo: sectionId } });
     } else {
-      const section = document.getElementById(sectionId);
-      if (section) section.scrollIntoView({ behavior: 'smooth' });
+      scrollToSectionWithOffset(sectionId);
+      setActiveSection(sectionId);
     }
   };
 
-  // Observe visible sections
   useEffect(() => {
-    const sections = ['home', 'skills', 'projects'];
+    if (location.pathname !== '/') return;
+
+    const sections = ['home', 'skills', 'projects', 'contact'];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -40,17 +48,17 @@ const Navbar = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [location.pathname]);
 
-  // Scroll to section when navigated with state
   useEffect(() => {
     if (location.pathname === '/' && location.state?.scrollTo) {
-      const section = document.getElementById(location.state.scrollTo);
-      if (section) section.scrollIntoView({ behavior: 'smooth' });
+      const target = location.state.scrollTo;
+      scrollToSectionWithOffset(target);
+      setActiveSection(target);
+      window.history.replaceState({}, document.title);
     }
   }, [location]);
 
-  // Styling helpers
   const linkClasses = (section) =>
     `group-hover:text-[#4EC3FF] transition duration-300 ${
       activeSection === section && location.pathname === '/' ? 'text-[#4EC3FF]' : ''
@@ -63,13 +71,11 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full px-8 py-4 z-10 bg-[#121212] flex items-center justify-between md:justify-around">
-      
-      {/* Logo */}
       <div className="text-[#4EC3FF] font-bold text-2xl sm:text-3xl">
         <Link to="/">B.K</Link>
       </div>
 
-      {/* Desktop Menu */}
+      {/* Desktop Nav */}
       <ul className="hidden md:flex space-x-8 text-white text-lg font-medium">
         {/* Home */}
         <li className="relative group cursor-pointer" onClick={() => goToSection('home')}>
@@ -77,7 +83,7 @@ const Navbar = () => {
           <span className={underline('home')} />
         </li>
 
-        {/* About (Route) */}
+        {/* About */}
         <li className="relative group">
           <Link
             to="/about"
@@ -106,7 +112,7 @@ const Navbar = () => {
           <span className={underline('projects')} />
         </li>
 
-        {/* Experience (Route) */}
+        {/* Experience */}
         <li className="relative group">
           <Link
             to="/experience"
@@ -123,25 +129,14 @@ const Navbar = () => {
           />
         </li>
 
-        {/* Contact (Route) */}
-        <li className="relative group">
-          <Link
-            to="/contact"
-            className={`group-hover:text-[#4EC3FF] transition duration-300 ${
-              location.pathname === '/contact' ? 'text-[#4EC3FF]' : ''
-            }`}
-          >
-            Contact
-          </Link>
-          <span
-            className={`absolute left-0 bottom-0 h-[2px] bg-[#4c9aff] transition-all duration-300 ${
-              location.pathname === '/contact' ? 'w-full' : 'w-0 group-hover:w-full'
-            }`}
-          />
+        {/* Contact */}
+        <li className="relative group cursor-pointer" onClick={() => goToSection('contact')}>
+          <span className={linkClasses('contact')}>Contact</span>
+          <span className={underline('contact')} />
         </li>
       </ul>
 
-      {/* Hamburger Icon */}
+      {/* Mobile Menu Icon */}
       <div className="text-white text-2xl cursor-pointer md:hidden" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
@@ -154,7 +149,7 @@ const Navbar = () => {
           <span onClick={() => { setMenuOpen(false); goToSection('skills'); }} className="text-white text-lg hover:text-[#4EC3FF] cursor-pointer">Skills</span>
           <span onClick={() => { setMenuOpen(false); goToSection('projects'); }} className="text-white text-lg hover:text-[#4EC3FF] cursor-pointer">Projects</span>
           <Link to="/experience" onClick={() => setMenuOpen(false)} className="text-white text-lg hover:text-[#4EC3FF]">Experience</Link>
-          <Link to="/contact" onClick={() => setMenuOpen(false)} className="text-white text-lg hover:text-[#4EC3FF]">Contact</Link>
+          <span onClick={() => { setMenuOpen(false); goToSection('contact'); }} className="text-white text-lg hover:text-[#4EC3FF] cursor-pointer">Contact</span>
         </div>
       )}
     </div>

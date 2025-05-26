@@ -40,12 +40,13 @@ const App = () => {
                 <Hero />
                 <Skills />
                 <Projects />
+                 <Contact/>
               </>
             }
           />
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
-          <Route path="/contact" element={<Contact />} />
+         
         </Routes>
       </Suspense>
     </>
