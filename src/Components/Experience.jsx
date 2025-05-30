@@ -1,10 +1,15 @@
 import React from 'react';
 import { FaGithub } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
+import {motion} from 'framer-motion'
 
 const Experience = () => {
   return (
-  <section
+  <motion.section
+  initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      whileHover={{ scale: 1.03, boxShadow: '0 8px 20px rgba(78, 195, 255, 0.4)' }}
   
   className="max-w-4xl mx-auto px-6 py-12 border border-gray-700 text-gray-200 rounded-xl shadow mt-32"
 >
@@ -35,7 +40,7 @@ const Experience = () => {
     </a>
     <a href="#" className="hover:underline">Live Demo</a>
   </div>
-</section>
+</motion.section>
 
 
 

@@ -2,12 +2,14 @@ import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion'; // For animations
 
+
 const Hero = () => {
   return (
     <section
       id="home"
       className="relative flex flex-col justify-center items-center w-full h-screen px-4 scroll-mt-20  overflow-hidden"
     >
+      
       {/* Hero Content */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -29,7 +31,7 @@ const Hero = () => {
         </h1>
 
         {/* Type Animation */}
-        <TypeAnimation
+        <TypeAnimation 
           sequence={[
             'Software Developer', 1200,
             'Full Stack Developer', 1200,
@@ -38,7 +40,7 @@ const Hero = () => {
           ]}
           wrapper="span"
           speed={40}
-          className="text-xl md:text-3xl text-gray-300 mb-8 mt-2 inline-block"
+          className="text-xl md:text-3xl text-gray-300 mb-8 mt-2 inline-block  "
           repeat={Infinity}
         />
 
